@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MessagePopup extends StatelessWidget {
   final String? title;
   final String? message;
-  final Function? okCallback;
-  final Function? cancelCallback;
+  final Function()? okCallback;
+  final Function()? cancelCallback;
   const MessagePopup({
     Key? key,
     required this.title,
@@ -24,7 +25,8 @@ class MessagePopup extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
             child: Container(
               color: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+              width: Get.width * 0.7,
               child: Column(
                 children: [
                   Text(
@@ -48,17 +50,13 @@ class MessagePopup extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                          onPressed: () {
-                            okCallback;
-                          },
-                          child: Text('확인')),
+                          onPressed: okCallback,
+                          child: const Text('확인')),
                       const SizedBox(
-                        width: 30,
+                        width: 10,
                       ),
                       ElevatedButton(
-                        onPressed: () {
-                          cancelCallback;
-                        },
+                        onPressed: cancelCallback,
                         child: Text('취소'),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.grey,

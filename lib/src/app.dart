@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone_coding/src/controller/bottom_nav_controller.dart';
+import 'package:instagram_clone_coding/src/pages/home.dart';
 
 import 'components/image_data.dart';
 
@@ -10,15 +11,13 @@ class App extends GetView<BottomNavController> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+        onWillPop: controller.willPopAction,
         child: Obx(() {
           return Scaffold(
-            appBar: AppBar(),
             body: IndexedStack(
               index: controller.pageIndex.value,
               children: [
-                Container(
-                  child: Center(child: Text('HOME')),
-                ),
+                const Home(),
                 Container(
                   child: Center(child: Text('SEARCH')),
                 ),
@@ -72,8 +71,7 @@ class App extends GetView<BottomNavController> {
               ],
             ),
           );
-        }),
-        onWillPop: controller.willPopAction
+        })
     );
   }
 }
